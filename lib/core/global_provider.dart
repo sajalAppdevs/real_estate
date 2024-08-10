@@ -13,7 +13,7 @@ class GlobalProvider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final apiManager = ApiManager(baseUrl: appConfig.apiConfig.baseUrl);
+    // final apiManager = ApiManager(baseUrl: appConfig.apiConfig.baseUrl);
     return MultiBlocProvider(
       providers: [
         RepositoryProvider.value(value: appConfig),

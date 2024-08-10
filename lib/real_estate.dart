@@ -41,7 +41,7 @@ class RealEstateApp with AppLogger {
     Bloc.observer = AppBlocObserver();
     String initialRoute = DashboardHome.route;
 
-    final lastRoute = app<AppPreferences>().onboardingLastRoute;
+    final lastRoute = "";
 
     final carPoolApp = RepositoryProvider.value(
       value: AppRepository(const AppPreferences()),

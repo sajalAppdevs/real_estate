@@ -3,16 +3,13 @@ library core;
 // WIDGETS
 export 'widgets/app_text.dart';
 export 'widgets/app_button.dart';
-export 'widgets/app_message.dart';
 export 'widgets/custom_appbar.dart';
 export 'widgets/input_group.dart';
 export 'widgets/app_input.dart';
 export 'widgets/required_field_label.dart';
-export 'widgets/app_dropdown_field.dart';
 export 'widgets/section_divider.dart';
 export 'widgets/misc.dart';
 export 'widgets/carousel_item.dart';
-export 'widgets/circular_avatar.dart';
 export 'widgets/tab_button.dart';
 export 'widgets/tab_bar_item.dart';
 export 'widgets/search_field.dart';

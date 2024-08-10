@@ -10,11 +10,11 @@ final app = GetIt.instance;
 /// Adds all globally available services to service locator
 Future<void> setupServices() async {
   app
-    ..registerLazySingleton(() => PreferenceService())
+    // ..registerLazySingleton(() => PreferenceService())
     ..registerLazySingleton(() => AppNavigator())
-    ..registerLazySingleton(() => const MessageService())
+    // ..registerLazySingleton(() => const MessageService())
     ..registerLazySingleton(() => AuthPreferences())
     ..registerLazySingleton(() => const AppPreferences());
 
-  await app<PreferenceService>().initialize();
+  // await app<PreferenceService>().initialize();
 }

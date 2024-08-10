@@ -1,10 +1,8 @@
 import 'package:real_estate/core/api/exceptions/exceptions.dart';
 import 'package:dio/dio.dart';
-import 'package:encrypt/encrypt.dart' as encrypt_key;
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
-import 'package:jiffy/jiffy.dart';
 
 extension DoubleExt on double {
   String get moneyFormat {
@@ -51,25 +49,25 @@ extension StringExt on String {
   }
 
   /// Encrypt String
-  String get encrypt {
-    if (isEmpty) return "";
-    final key = encrypt_key.Key.fromLength(32);
-    final iv = encrypt_key.IV.fromLength(8);
-    final encryptor = encrypt_key.Encrypter(encrypt_key.Salsa20(key));
-    final encryptedStr = encryptor.encrypt(this, iv: iv);
-    return encryptedStr.base64;
-  }
+  // String get encrypt {
+  //   if (isEmpty) return "";
+  //   final key = encrypt_key.Key.fromLength(32);
+  //   final iv = encrypt_key.IV.fromLength(8);
+  //   final encryptor = encrypt_key.Encrypter(encrypt_key.Salsa20(key));
+  //   final encryptedStr = encryptor.encrypt(this, iv: iv);
+  //   return encryptedStr.base64;
+  // }
 
   /// Decrypt encrypted
-  String get decrypt {
-    if (isEmpty) return "";
-    final key = encrypt_key.Key.fromLength(32);
-    final iv = encrypt_key.IV.fromLength(8);
-    final encryptor = encrypt_key.Encrypter(encrypt_key.Salsa20(key));
-    final decryptedStr =
-        encryptor.decrypt(encrypt_key.Encrypted.from64(this), iv: iv);
-    return decryptedStr;
-  }
+  // String get decrypt {
+  //   if (isEmpty) return "";
+  //   final key = encrypt_key.Key.fromLength(32);
+  //   final iv = encrypt_key.IV.fromLength(8);
+  //   final encryptor = encrypt_key.Encrypter(encrypt_key.Salsa20(key));
+  //   final decryptedStr =
+  //       encryptor.decrypt(encrypt_key.Encrypted.from64(this), iv: iv);
+  //   return decryptedStr;
+  // }
 
   String get capitalize {
     if (length <= 1) return toUpperCase();
@@ -142,17 +140,17 @@ extension DateExtensions on DateTime {
     return formatter.format(this);
   }
 
-  ///
-  /// [DateTime] Extension for formatting date as "Mon, 26 Oct 2022"
-  String fullWordedDate() {
-    return Jiffy.parseFromDateTime(this).format(pattern: 'EEEE, do MMMM yyyy');
-  }
+  // ///
+  // /// [DateTime] Extension for formatting date as "Mon, 26 Oct 2022"
+  // String fullWordedDate() {
+  //   return Jiffy.parseFromDateTime(this).format(pattern: 'EEEE, do MMMM yyyy');
+  // }
 
-  ///
-  /// [DateTime] Extension for formatting date as "Mon, 26 Oct"
-  String eventHalfDate() {
-    return Jiffy.parseFromDateTime(this).format(pattern: 'EEE, do MMM');
-  }
+  // ///
+  // /// [DateTime] Extension for formatting date as "Mon, 26 Oct"
+  // String eventHalfDate() {
+  //   return Jiffy.parseFromDateTime(this).format(pattern: 'EEE, do MMM');
+  // }
 
   ///
   /// [DateTime] Extension for formatting date as "Mon, 26 Oct"

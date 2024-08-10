@@ -8,7 +8,7 @@ import 'package:real_estate/core/configs/env_config.dart';
 import 'package:real_estate/core/services/navigation_service.dart';
 import 'package:real_estate/core/services/service_locator.dart';
 import 'package:real_estate/core/utils/constants.dart';
-import 'package:real_estate/core/widgets/app_message.dart';
+// import 'package:real_estate/core/widgets/app_message.dart';
 
 void main() async {
   await dotenv.load(fileName: Environment.envFile);
@@ -64,7 +64,7 @@ class _MyAppState extends State<MyApp> {
       navigatorKey: app<AppNavigator>().key,
       onGenerateRoute: onGenerateRoute,
       initialRoute: widget.initialRoute,
-      builder: (_, Widget? child) => AppMessage(child: child ?? DashboardHome()),
+      builder: (_, Widget? child) =>  child ?? DashboardHome(),
     );
   }
 }
