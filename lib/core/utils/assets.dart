@@ -25,4 +25,10 @@ class ImageAssets {
   static const kitchen5 = "assets/images/kitchen_5.jpg";
 
   static const locationMap = "assets/images/location_map.jpg";
+
+  static const wallet = "assets/images/wallet.png";
+  static const layer = "assets/images/layer.png";
+  static const safe = "assets/images/safe.png";
+  static const obirin = "assets/images/obirin.jpg";
+  static const delete = "assets/images/delete.png";
 }

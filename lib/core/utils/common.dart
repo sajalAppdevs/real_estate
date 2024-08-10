@@ -103,14 +103,16 @@ class CircularImageContainer extends StatelessWidget {
       width: size ?? 32,
       height: size ?? 32,
       margin: margin ?? const EdgeInsets.only(right: 16),
-      decoration:
-          BoxDecoration(shape: BoxShape.circle, color: color ?? kPrimaryColor),
-      child: Center(
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: color ?? kPrimaryColor,
+      ),
+      child: ClipOval(
         child: Image.asset(
           asset,
-          color: assetColor,
-          width: assetSize ?? 20,
-          height: assetSize ?? 20,
+          fit: BoxFit.cover,
+          width: assetSize ?? size ?? 20,
+          height: assetSize ?? size ?? 20,
         ),
       ),
     );
@@ -150,49 +152,6 @@ class CircularContainerIcon extends StatelessWidget {
   }
 }
 
-class RowItem extends StatelessWidget {
-  const RowItem({
-    Key? key,
-    required this.title,
-    required this.subTitle,
-    this.titleSize,
-    this.subSize,
-  }) : super(key: key);
-
-  final String title;
-  final String subTitle;
-  final double? titleSize;
-  final double? subSize;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              AppText(title, weight: FontWeight.w600, color: kDarkGreyColor),
-              const SizedBox(height: 8),
-              AppText(subTitle, weight: FontWeight.w600, color: kLightGreyColor)
-            ],
-          ),
-        ),
-        Container(
-          width: 65,
-          height: 29,
-          decoration: BoxDecoration(
-            color: kSecondaryColor,
-            borderRadius: BorderRadius.circular(24),
-          ),
-          child: const Center(
-              child: AppText("Copy", size: 13, weight: FontWeight.w500)),
-        )
-      ],
-    );
-  }
-}
-
 class SecondaryButton extends StatelessWidget {
   const SecondaryButton({
     super.key,
@@ -223,115 +182,6 @@ class SecondaryButton extends StatelessWidget {
             weight: FontWeight.w500,
           ),
         ),
-      ),
-    );
-  }
-}
-
-class DigitButton extends StatelessWidget {
-  const DigitButton({Key? key, required this.digit, required this.onTap})
-      : super(key: key);
-  final String digit;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    double size = Platform.isIOS ? 80 : 72;
-    return InkWell(
-      onTap: () => {HapticFeedback.heavyImpact(), onTap()},
-      splashColor: kSecondaryColorVariant,
-      borderRadius: BorderRadius.circular(40),
-      child: Container(
-        width: size,
-        height: size,
-        decoration: const BoxDecoration(shape: BoxShape.circle),
-        child: Center(
-          child: AppText(digit,
-              size: 24, weight: FontWeight.w600, color: kContrastColor),
-        ),
-      ),
-    );
-  }
-}
-
-class PinCodeItem extends StatelessWidget {
-  const PinCodeItem({Key? key, required this.hasValue}) : super(key: key);
-
-  final bool hasValue;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 24,
-      height: 24,
-      padding: const EdgeInsets.all(4),
-      margin: const EdgeInsets.symmetric(horizontal: 8),
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        border: Border.all(color: kStrokeColor, width: 2),
-      ),
-      child: hasValue
-          ? Container(
-              width: 12,
-              height: 12,
-              decoration: const BoxDecoration(
-                  shape: BoxShape.circle, color: kContrastColor),
-            )
-          : null,
-    );
-  }
-}
-
-class EmptyState extends StatelessWidget {
-  const EmptyState({
-    super.key,
-    required this.svg,
-    required this.header,
-    required this.description,
-  });
-
-  final String svg;
-  final String header;
-  final String description;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 24.0, right: 24, bottom: 52),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          CircularContainer(
-            size: 64,
-            asset: svg,
-            color: kSecondaryColor,
-            assetColor: kPrimaryColor,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 24, bottom: 8),
-            child: HeadingText(header),
-          ),
-          RichText(
-            textAlign: TextAlign.center,
-            text: TextSpan(
-              text: "Tap on the",
-              style: const TextStyle(
-                  color: kDarkGreyColor,
-                  height: 1.5,
-                  fontSize: 14,
-                  fontWeight: FontWeight.w400),
-              children: [
-                const TextSpan(
-                  text: " + ",
-                  style: TextStyle(
-                      fontWeight: FontWeight.w600, color: kContrastColor),
-                ),
-                const TextSpan(text: "button below to "),
-                TextSpan(text: description),
-              ],
-            ),
-          ),
-        ],
       ),
     );
   }

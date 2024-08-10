@@ -22,7 +22,7 @@ class _HomeScreenState extends State<HomeScreen>
   late Animation<double> _imageSizeAnimation;
   late Animation<double> _fadeAnimation;
   late Animation<double> _fade2Animation;
-  late Animation<Offset> _appTextSlideAnimation;
+  late Animation<double> _appTextSlideAnimation;
 
   late Animation<double> _scaleAnimation;
   late Animation<int> _numberAnimation;
@@ -95,8 +95,8 @@ class _HomeScreenState extends State<HomeScreen>
     _fade2Animation = Tween<double>(begin: 0, end: 1).animate(
       CurvedAnimation(
         parent: _controller,
-        curve: const Interval(0.3 + 3 / 1500, 0.6 + 3 / 1500,
-            curve: Curves.easeInOut),
+        curve:
+            Interval(0.3 + 3 / 1500, 0.6 + 3 / 1500, curve: Curves.easeInOut),
       ),
     );
 
@@ -114,10 +114,17 @@ class _HomeScreenState extends State<HomeScreen>
       ),
     );
 
-    _appTextSlideAnimation = Tween<Offset>(
-      begin: const Offset(0, 1),
-      end: Offset.zero,
-    ).animate(
+    // _appTextSlideAnimation = Tween<Offset>(
+    //   begin: const Offset(0, 1),
+    //   end: Offset.zero,
+    // ).animate(
+    //   CurvedAnimation(
+    //     parent: _controller,
+    //     curve: const Interval(0.7, 0.9, curve: Curves.easeInOut),
+    //   ),
+    // );
+
+    _appTextSlideAnimation = Tween<double>(begin: 0, end: 1).animate(
       CurvedAnimation(
         parent: _controller,
         curve: const Interval(0.7, 0.9, curve: Curves.easeInOut),
@@ -246,7 +253,7 @@ class _HomeScreenState extends State<HomeScreen>
                                 Transform.scale(
                                   scale: _imageSizeAnimation.value,
                                   child: CircularImageContainer(
-                                    asset: ImageAssets.person,
+                                    asset: ImageAssets.obirin,
                                     margin: EdgeInsets.all(0),
                                     assetSize: 60,
                                     size: 60,
@@ -264,19 +271,8 @@ class _HomeScreenState extends State<HomeScreen>
                                 weight: FontWeight.w500,
                               ),
                             ),
-                            // AnimatedText(
-                            //   text: "let's select your perfect place",
-                            //   style: TextStyle(
-                            //     height: 1.2,
-                            //     fontSize: 45,
-                            //     color: kContrastColor,
-                            //     fontFamily: "Satoshi",
-                            //     fontWeight: FontWeight.w500,
-                            //   ),
-                            //   position: _appTextSlideAnimation,
-                            //   fade: _fadeAnimation,
-                            // ),
                             AutoExpandingText(
+                              animation: _appTextSlideAnimation,
                               text: "let's select your perfect place",
                               style: TextStyle(
                                 height: 1.2,
@@ -286,19 +282,6 @@ class _HomeScreenState extends State<HomeScreen>
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
-                            // SlideTransition(
-                            //   position: _appTextSlideAnimation,
-                            //   child: FadeTransition(
-                            //     opacity: _fadeAnimation,
-                            //     child: AppText(
-                            //       "let's select your perfect place",
-                            //       color: kContrastColor,
-                            //       size: 45,
-                            //       weight: FontWeight.w500,
-                            //       height: 1.2,
-                            //     ),
-                            //   ),
-                            // ),
                             SizedBox(height: 30),
                             _rentInfo,
                           ],

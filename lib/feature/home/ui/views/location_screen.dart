@@ -22,6 +22,9 @@ class _LocationMapScreenState extends State<LocationMapScreen>
   late AnimationController _controller;
   late Animation<double> _menuWidthAnimation;
 
+  late Animation<double> _contentWidthAnimation;
+  bool _priceSelected = false;
+
   @override
   void initState() {
     _searchController.text = "Toll Gate";
@@ -61,6 +64,14 @@ class _LocationMapScreenState extends State<LocationMapScreen>
       ),
     );
 
+    _contentWidthAnimation = Tween<double>(begin: 140, end: 50).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: const Interval(0.3, 0.7, curve: Curves.easeInOut),
+      ),
+    );
+    _selectedItem = 1;
+    _priceSelected = true;
     super.initState();
   }
 
@@ -124,7 +135,7 @@ class _LocationMapScreenState extends State<LocationMapScreen>
             top: 200,
             left: 120,
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(5.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -134,7 +145,9 @@ class _LocationMapScreenState extends State<LocationMapScreen>
                       return Transform.scale(
                         scale: _scaleAnimation.value,
                         alignment: Alignment.bottomLeft,
-                        child: Container(
+                        child: AnimatedContainer(
+                          duration: const Duration(milliseconds: 500),
+                          width: _priceSelected ? 100 : 45,
                           padding: const EdgeInsets.all(14),
                           decoration: BoxDecoration(
                             color: kBottomContainerSwicthTabColor,
@@ -146,7 +159,10 @@ class _LocationMapScreenState extends State<LocationMapScreen>
                             ),
                           ),
                           child: Center(
-                            child: AppText("8,5mn P", color: kWhite),
+                            child: _priceSelected
+                                ? AppText("8,5mn P", color: kWhite)
+                                : SvgPicture.asset(SvgAssets.building,
+                                    width: 20, height: 20),
                           ),
                         ),
                       );
@@ -170,10 +186,10 @@ class _LocationMapScreenState extends State<LocationMapScreen>
                       return Transform.scale(
                         scale: _scaleAnimation.value,
                         alignment: Alignment.bottomLeft,
-                        child: Container(
-                          height: 50,
-                          width: 50,
-                          // padding: EdgeInsets.all(12),
+                        child: AnimatedContainer(
+                          duration: const Duration(milliseconds: 500),
+                          width: _priceSelected ? 100 : 45,
+                          padding: const EdgeInsets.all(14),
                           decoration: BoxDecoration(
                             color: kBottomContainerSwicthTabColor,
                             borderRadius: const BorderRadius.only(
@@ -184,8 +200,11 @@ class _LocationMapScreenState extends State<LocationMapScreen>
                             ),
                           ),
                           child: Center(
-                              child: SvgPicture.asset(SvgAssets.building,
-                                  width: 20, height: 20)),
+                            child: _priceSelected
+                                ? AppText("12,5mn P", color: kWhite)
+                                : SvgPicture.asset(SvgAssets.building,
+                                    width: 20, height: 20),
+                          ),
                         ),
                       );
                     },
@@ -208,10 +227,10 @@ class _LocationMapScreenState extends State<LocationMapScreen>
                       return Transform.scale(
                         scale: _scaleAnimation.value,
                         alignment: Alignment.bottomLeft,
-                        child: Container(
-                          height: 50,
-                          width: 50,
-                          // padding: EdgeInsets.all(12),
+                        child: AnimatedContainer(
+                          duration: const Duration(milliseconds: 500),
+                          width: _priceSelected ? 100 : 45,
+                          padding: const EdgeInsets.all(14),
                           decoration: BoxDecoration(
                             color: kBottomContainerSwicthTabColor,
                             borderRadius: const BorderRadius.only(
@@ -222,8 +241,11 @@ class _LocationMapScreenState extends State<LocationMapScreen>
                             ),
                           ),
                           child: Center(
-                              child: SvgPicture.asset(SvgAssets.building,
-                                  width: 20, height: 20)),
+                            child: _priceSelected
+                                ? AppText("20,5mn P", color: kWhite)
+                                : SvgPicture.asset(SvgAssets.building,
+                                    width: 20, height: 20),
+                          ),
                         ),
                       );
                     },
@@ -246,10 +268,10 @@ class _LocationMapScreenState extends State<LocationMapScreen>
                       return Transform.scale(
                         scale: _scaleAnimation.value,
                         alignment: Alignment.bottomLeft,
-                        child: Container(
-                          height: 50,
-                          width: 50,
-                          // padding: EdgeInsets.all(12),
+                        child: AnimatedContainer(
+                          duration: const Duration(milliseconds: 500),
+                          width: _priceSelected ? 100 : 45,
+                          padding: const EdgeInsets.all(14),
                           decoration: BoxDecoration(
                             color: kBottomContainerSwicthTabColor,
                             borderRadius: const BorderRadius.only(
@@ -260,8 +282,11 @@ class _LocationMapScreenState extends State<LocationMapScreen>
                             ),
                           ),
                           child: Center(
-                              child: SvgPicture.asset(SvgAssets.building,
-                                  width: 20, height: 20)),
+                            child: _priceSelected
+                                ? AppText("32,5mn P", color: kWhite)
+                                : SvgPicture.asset(SvgAssets.building,
+                                    width: 20, height: 20),
+                          ),
                         ),
                       );
                     },
@@ -284,10 +309,10 @@ class _LocationMapScreenState extends State<LocationMapScreen>
                       return Transform.scale(
                         scale: _scaleAnimation.value,
                         alignment: Alignment.bottomLeft,
-                        child: Container(
-                          height: 50,
-                          width: 50,
-                          // padding: EdgeInsets.all(12),
+                        child: AnimatedContainer(
+                          duration: const Duration(milliseconds: 500),
+                          width: _priceSelected ? 100 : 45,
+                          padding: const EdgeInsets.all(14),
                           decoration: BoxDecoration(
                             color: kBottomContainerSwicthTabColor,
                             borderRadius: const BorderRadius.only(
@@ -298,8 +323,11 @@ class _LocationMapScreenState extends State<LocationMapScreen>
                             ),
                           ),
                           child: Center(
-                              child: SvgPicture.asset(SvgAssets.building,
-                                  width: 20, height: 20)),
+                            child: _priceSelected
+                                ? AppText("48,5mn P", color: kWhite)
+                                : SvgPicture.asset(SvgAssets.building,
+                                    width: 20, height: 20),
+                          ),
                         ),
                       );
                     },
@@ -322,10 +350,10 @@ class _LocationMapScreenState extends State<LocationMapScreen>
                       return Transform.scale(
                         scale: _scaleAnimation.value,
                         alignment: Alignment.bottomLeft,
-                        child: Container(
-                          height: 50,
-                          width: 50,
-                          // padding: EdgeInsets.all(12),
+                        child: AnimatedContainer(
+                          duration: const Duration(milliseconds: 500),
+                          width: _priceSelected ? 100 : 45,
+                          padding: const EdgeInsets.all(14),
                           decoration: BoxDecoration(
                             color: kBottomContainerSwicthTabColor,
                             borderRadius: const BorderRadius.only(
@@ -336,8 +364,11 @@ class _LocationMapScreenState extends State<LocationMapScreen>
                             ),
                           ),
                           child: Center(
-                              child: SvgPicture.asset(SvgAssets.building,
-                                  width: 20, height: 20)),
+                            child: _priceSelected
+                                ? AppText("28,5mn P", color: kWhite)
+                                : SvgPicture.asset(SvgAssets.building,
+                                    width: 20, height: 20),
+                          ),
                         ),
                       );
                     },
@@ -401,14 +432,15 @@ class _LocationMapScreenState extends State<LocationMapScreen>
                 },
               ),
               Positioned(
-                bottom: 170,
+                bottom: 160,
                 left: 40,
                 child: AnimatedContainer(
                   duration: Duration(milliseconds: 400),
-                  padding: const EdgeInsets.all(12.0),
+                  padding: const EdgeInsets.only(
+                      bottom: 14.0, top: 14, right: 16, left: 15),
                   decoration: BoxDecoration(
                     color: _menuExpanded ? kMenuTabColor : Colors.transparent,
-                    borderRadius: BorderRadius.circular(20),
+                    borderRadius: BorderRadius.circular(28),
                   ),
                   child: AnimatedSize(
                     duration: Duration(milliseconds: 300),
@@ -421,16 +453,34 @@ class _LocationMapScreenState extends State<LocationMapScreen>
                                 onTap: () => _selectItem(index),
                                 child: Container(
                                   padding: EdgeInsets.symmetric(vertical: 8.0),
-                                  child: AppText(
-                                    [
-                                      "Cosy areas",
-                                      "Price",
-                                      "Infrastructure",
-                                      "Without any layer"
-                                    ][index],
-                                    color: _selectedItem == index
-                                        ? kTextPrimary3
-                                        : kTextPrimary2,
+                                  child: Row(
+                                    children: [
+                                      Image.asset(
+                                        [
+                                          ImageAssets.safe,
+                                          ImageAssets.wallet,
+                                          ImageAssets.delete,
+                                          ImageAssets.layer
+                                        ][index],
+                                        width: 15,
+                                        height: 15,
+                                        color: _selectedItem == index
+                                            ? kTextPrimary3
+                                            : kTextPrimary2,
+                                      ),
+                                      SizedBox(width: 8.0),
+                                      AppText(
+                                        [
+                                          "Cosy areas",
+                                          "Price",
+                                          "Infrastructure",
+                                          "Without any layer"
+                                        ][index],
+                                        color: _selectedItem == index
+                                            ? kTextPrimary3
+                                            : kTextPrimary2,
+                                      ),
+                                    ],
                                   ),
                                 ),
                               );
@@ -496,6 +546,7 @@ class _LocationMapScreenState extends State<LocationMapScreen>
     setState(() {
       _selectedItem = index;
       _menuExpanded = false;
+      _priceSelected = (index == 1);
     });
   }
 }

@@ -3,13 +3,15 @@ import 'package:flutter/material.dart';
 class AutoExpandingText extends StatelessWidget {
   final String text;
   final TextStyle? style;
-  final Duration duration;
+  // final Duration duration;
+  final Animation<double> animation;
 
   const AutoExpandingText({
     Key? key,
     required this.text,
+    required this.animation,
     this.style,
-    this.duration = const Duration(milliseconds: 500),
+    // this.duration = const Duration(milliseconds: 500),
   }) : super(key: key);
 
   @override
@@ -17,9 +19,10 @@ class AutoExpandingText extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         return _AutoExpandingText(
+          animation: animation,
           text: text,
           style: style,
-          duration: duration,
+          // duration: duration,
           maxWidth: constraints.maxWidth,
         );
       },
@@ -30,14 +33,16 @@ class AutoExpandingText extends StatelessWidget {
 class _AutoExpandingText extends StatefulWidget {
   final String text;
   final TextStyle? style;
-  final Duration duration;
+  // final Duration duration;
   final double maxWidth;
+  final Animation<double> animation;
 
   const _AutoExpandingText({
     Key? key,
     required this.text,
     this.style,
-    required this.duration,
+    required this.animation,
+    // required this.duration,
     required this.maxWidth,
   }) : super(key: key);
 
@@ -47,12 +52,14 @@ class _AutoExpandingText extends StatefulWidget {
 
 class __AutoExpandingTextState extends State<_AutoExpandingText>
     with SingleTickerProviderStateMixin {
-  late final _controller = AnimationController(
-    vsync: this,
-    duration: widget.duration,
-  );
-  List<Animation<double>> _lineAnimations = [];
+  // late final _controller = AnimationController(
+  //   vsync: this,
+  //   duration: widget.duration,
+  // );
+
+  // List<Animation<double>> _lineAnimations = [];
   List<String> _lines = [];
+  double? height;
 
   @override
   void initState() {
@@ -75,6 +82,7 @@ class __AutoExpandingTextState extends State<_AutoExpandingText>
       final end = textPainter
           .getPositionForOffset(Offset(metrics.width, metrics.baseline))
           .offset;
+      height ??= metrics.height;
       if (end > lastOffset) {
         lines.add(widget.text.substring(lastOffset, end).trim());
         lastOffset = end;
@@ -83,46 +91,63 @@ class __AutoExpandingTextState extends State<_AutoExpandingText>
 
     setState(() {
       _lines = lines;
-      _lineAnimations = List.generate(
-        _lines.length,
-        (index) => Tween<double>(begin: 0, end: 1).animate(
-          CurvedAnimation(
-            parent: _controller,
-            curve: Interval(
-              index / _lines.length,
-              (index + 1) / _lines.length,
-              curve: Curves.easeOut,
-            ),
-          ),
-        ),
-      );
+      // _lineAnimations = List.generate(
+      //   _lines.length,
+      //   (index) => Tween<double>(begin: 0, end: 1).animate(
+      //     CurvedAnimation(
+      //       parent: _controller,
+      //       curve: Interval(
+      //         index / _lines.length,
+      //         (index + 1) / _lines.length,
+      //         curve: Curves.easeOut,
+      //       ),
+      //     ),
+      //   ),
+      // );
     });
 
-    _controller.forward();
+    // _controller.forward();
   }
 
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   _controller.dispose();
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
-      animation: _controller,
+      animation: widget.animation,
       builder: (context, child) {
-        debugPrint('Building $_lines');
+        // debugPrint('Building $_lines');
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: List.generate(_lines.length, (index) {
+            final delay = index / _lines.length;
+            final endValue = (index + 1) / _lines.length;
+            final lineAnimation = CurvedAnimation(
+              parent: widget.animation,
+              curve: Interval(
+                delay,
+                endValue,
+                curve: Curves.easeOut,
+              ),
+            );
+
             return ClipRect(
               child: Align(
                 alignment: Alignment.topLeft,
-                heightFactor: _lineAnimations[index].value,
-                child: Text(
-                  _lines[index],
-                  style: widget.style,
+                heightFactor: lineAnimation.value,
+                child: Opacity(
+                  opacity: lineAnimation.value,
+                  child: Transform.translate(
+                    offset: Offset(0, (1 - lineAnimation.value) * 20),
+                    child: Text(
+                      _lines[index],
+                      style: widget.style,
+                    ),
+                  ),
                 ),
               ),
             );
