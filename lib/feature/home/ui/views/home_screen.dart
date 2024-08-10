@@ -3,9 +3,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter/material.dart';
-import 'package:real_estate/feature/home/ui/views/animated_text.dart';
 
 import '../../../../core/core.dart';
+import 'auto_expanding_text.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -264,7 +264,19 @@ class _HomeScreenState extends State<HomeScreen>
                                 weight: FontWeight.w500,
                               ),
                             ),
-                            AnimatedText(
+                            // AnimatedText(
+                            //   text: "let's select your perfect place",
+                            //   style: TextStyle(
+                            //     height: 1.2,
+                            //     fontSize: 45,
+                            //     color: kContrastColor,
+                            //     fontFamily: "Satoshi",
+                            //     fontWeight: FontWeight.w500,
+                            //   ),
+                            //   position: _appTextSlideAnimation,
+                            //   fade: _fadeAnimation,
+                            // ),
+                            AutoExpandingText(
                               text: "let's select your perfect place",
                               style: TextStyle(
                                 height: 1.2,
@@ -273,8 +285,6 @@ class _HomeScreenState extends State<HomeScreen>
                                 fontFamily: "Satoshi",
                                 fontWeight: FontWeight.w500,
                               ),
-                              position: _appTextSlideAnimation,
-                              fade: _fadeAnimation,
                             ),
                             // SlideTransition(
                             //   position: _appTextSlideAnimation,

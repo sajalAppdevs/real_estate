@@ -23,6 +23,7 @@ class AnimatedText extends StatelessWidget {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: lines.map((line) {
+          debugPrint(line);
           return SlideTransition(
             position: position,
             child: FadeTransition(
