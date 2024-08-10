@@ -3,6 +3,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter/material.dart';
+import 'package:real_estate/feature/home/ui/views/animated_text.dart';
 
 import '../../../../core/core.dart';
 
@@ -263,19 +264,31 @@ class _HomeScreenState extends State<HomeScreen>
                                 weight: FontWeight.w500,
                               ),
                             ),
-                            SlideTransition(
-                              position: _appTextSlideAnimation,
-                              child: FadeTransition(
-                                opacity: _fadeAnimation,
-                                child: AppText(
-                                  "let's select your perfect place",
-                                  color: kContrastColor,
-                                  size: 45,
-                                  weight: FontWeight.w500,
-                                  height: 1.2,
-                                ),
+                            AnimatedText(
+                              text: "let's select your perfect place",
+                              style: TextStyle(
+                                height: 1.2,
+                                fontSize: 45,
+                                color: kContrastColor,
+                                fontFamily: "Satoshi",
+                                fontWeight: FontWeight.w500,
                               ),
+                              position: _appTextSlideAnimation,
+                              fade: _fadeAnimation,
                             ),
+                            // SlideTransition(
+                            //   position: _appTextSlideAnimation,
+                            //   child: FadeTransition(
+                            //     opacity: _fadeAnimation,
+                            //     child: AppText(
+                            //       "let's select your perfect place",
+                            //       color: kContrastColor,
+                            //       size: 45,
+                            //       weight: FontWeight.w500,
+                            //       height: 1.2,
+                            //     ),
+                            //   ),
+                            // ),
                             SizedBox(height: 30),
                             _rentInfo,
                           ],
