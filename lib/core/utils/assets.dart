@@ -6,6 +6,14 @@ class SvgAssets {
   static const heart = "assets/svg/heart.svg";
 
   static const location = "assets/svg/location_real.svg";
+
+  static const searchIcon = "assets/svg/search_icon.svg";
+
+  static const filterIcon = "assets/svg/setting_4.svg";
+  static const layer = "assets/svg/layer.svg";
+  static const direct = "assets/svg/direct_right.svg";
+  static const building = "assets/svg/buliding.svg";
+  static const textAlign = "assets/svg/textalign_left.svg";
 }
 
 class ImageAssets {

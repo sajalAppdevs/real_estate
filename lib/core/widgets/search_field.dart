@@ -1,7 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:real_estate/core/core.dart';
 import 'package:real_estate/core/utils/constants.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:flutter/material.dart';
 
 class SearchField extends StatelessWidget {
@@ -55,13 +57,12 @@ class SearchField extends StatelessWidget {
               prefixIcon: SizedBox(
                 width: 36,
                 child: Center(
-                  child: Icon(
-                    CupertinoIcons.search,
-                    size: 20,
-                    color: Colors.black,
-                  ),
-                ),
+                    child: SvgPicture.asset(
+                  SvgAssets.searchIcon,
+                  color: kBlack,
+                )),
               ),
+              contentPadding: const EdgeInsets.symmetric(vertical: 12.0),
               hintStyle: TextStyle(
                 color: kIndicatorColor,
                 fontSize: 15,

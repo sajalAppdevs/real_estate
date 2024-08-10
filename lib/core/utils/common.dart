@@ -72,6 +72,7 @@ class CircularContainer extends StatelessWidget {
         child: SvgPicture.asset(
           asset,
           width: assetSize ?? 20,
+          color: assetColor,
           height: assetSize ?? 20,
         ),
       ),

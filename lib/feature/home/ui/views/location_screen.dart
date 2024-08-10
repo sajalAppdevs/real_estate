@@ -107,8 +107,9 @@ class _LocationMapScreenState extends State<LocationMapScreen>
                       Transform.scale(
                         scale: _imageSizeAnimation.value,
                         child: CircularContainer(
-                          asset: SvgAssets.heart,
+                          asset: SvgAssets.filterIcon,
                           color: kWhite,
+                          assetColor: kBlack,
                           size: 46,
                           margin: EdgeInsets.only(bottom: 5),
                         ),
@@ -182,8 +183,9 @@ class _LocationMapScreenState extends State<LocationMapScreen>
                               bottomLeft: Radius.circular(0),
                             ),
                           ),
-                          child:
-                              Center(child: SvgPicture.asset(SvgAssets.heart)),
+                          child: Center(
+                              child: SvgPicture.asset(SvgAssets.building,
+                                  width: 20, height: 20)),
                         ),
                       );
                     },
@@ -219,8 +221,9 @@ class _LocationMapScreenState extends State<LocationMapScreen>
                               bottomLeft: Radius.circular(0),
                             ),
                           ),
-                          child:
-                              Center(child: SvgPicture.asset(SvgAssets.heart)),
+                          child: Center(
+                              child: SvgPicture.asset(SvgAssets.building,
+                                  width: 20, height: 20)),
                         ),
                       );
                     },
@@ -256,8 +259,9 @@ class _LocationMapScreenState extends State<LocationMapScreen>
                               bottomLeft: Radius.circular(0),
                             ),
                           ),
-                          child:
-                              Center(child: SvgPicture.asset(SvgAssets.heart)),
+                          child: Center(
+                              child: SvgPicture.asset(SvgAssets.building,
+                                  width: 20, height: 20)),
                         ),
                       );
                     },
@@ -293,8 +297,9 @@ class _LocationMapScreenState extends State<LocationMapScreen>
                               bottomLeft: Radius.circular(0),
                             ),
                           ),
-                          child:
-                              Center(child: SvgPicture.asset(SvgAssets.heart)),
+                          child: Center(
+                              child: SvgPicture.asset(SvgAssets.building,
+                                  width: 20, height: 20)),
                         ),
                       );
                     },
@@ -330,8 +335,9 @@ class _LocationMapScreenState extends State<LocationMapScreen>
                               bottomLeft: Radius.circular(0),
                             ),
                           ),
-                          child:
-                              Center(child: SvgPicture.asset(SvgAssets.heart)),
+                          child: Center(
+                              child: SvgPicture.asset(SvgAssets.building,
+                                  width: 20, height: 20)),
                         ),
                       );
                     },
@@ -366,7 +372,8 @@ class _LocationMapScreenState extends State<LocationMapScreen>
                                   shape: BoxShape.circle,
                                 ),
                                 child: Center(
-                                  child: SvgPicture.asset(SvgAssets.heart),
+                                  child: SvgPicture.asset(SvgAssets.layer,
+                                      width: 20, height: 20),
                                 ),
                               ),
                             ),
@@ -383,7 +390,8 @@ class _LocationMapScreenState extends State<LocationMapScreen>
                                 shape: BoxShape.circle,
                               ),
                               child: Center(
-                                  child: SvgPicture.asset(SvgAssets.heart)),
+                                  child: SvgPicture.asset(SvgAssets.direct,
+                                      width: 20, height: 20)),
                             ),
                           ),
                         ],
@@ -447,14 +455,19 @@ class _LocationMapScreenState extends State<LocationMapScreen>
                     scale: _imageSizeAnimation.value,
                     child: Container(
                       // height: 60,
-                      padding: EdgeInsets.all(12),
+                      padding: EdgeInsets.all(14),
                       decoration: BoxDecoration(
                         color: kLocationTabColor.withOpacity(0.7),
                         borderRadius: BorderRadius.circular(36),
                       ),
-                      child: Center(
-                        child: AppText("List of variants",
-                            color: kWhite, size: 14, weight: FontWeight.w500),
+                      child: Row(
+                        children: [
+                          SvgPicture.asset(SvgAssets.textAlign,
+                              width: 20, height: 20),
+                          SizedBox(width: 10),
+                          AppText("List of variants",
+                              color: kWhite, size: 14, weight: FontWeight.w500),
+                        ],
                       ),
                     ),
                   ),
