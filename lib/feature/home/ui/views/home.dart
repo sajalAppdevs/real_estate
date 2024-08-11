@@ -24,12 +24,12 @@ class _DashboardHomeState extends State<DashboardHome>
   late Animation<Offset> _tabIconsAnimation;
   late AnimationController _tabIconsController;
 
-  final tabScreens = [
-    LocationMapScreen(),
-    Center(child: Text('Messages Screen')),
-    HomeScreen(),
-    Center(child: Text('Favorites Screen')),
-    Center(child: Text('Profile Screen')),
+  final _screens = [
+    (icon: SvgAssets.search, widget: LocationMapScreen()),
+    (icon: SvgAssets.message, widget: Text('Messages Screen')),
+    (icon: SvgAssets.home, widget: HomeScreen()),
+    (icon: SvgAssets.heart, widget: Text('Favorites Screen')),
+    (icon: SvgAssets.user, widget: Text('Profile Screen')),
   ];
 
   @override
@@ -85,7 +85,7 @@ class _DashboardHomeState extends State<DashboardHome>
           children: [
             AnimatedSwitcher(
               duration: const Duration(milliseconds: 300),
-              child: tabScreens[_currentIndex],
+              child: _screens[_currentIndex].widget,
               transitionBuilder: (Widget child, Animation<double> animation) {
                 return FadeTransition(opacity: animation, child: child);
               },
@@ -96,21 +96,21 @@ class _DashboardHomeState extends State<DashboardHome>
                 position: _tabIconsAnimation,
                 child: Container(
                   height: 60,
-                  margin:
-                      const EdgeInsets.only(left: 80, right: 80, bottom: 40),
+                  margin: const EdgeInsets.only(bottom: 40),
                   padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
                     color: kBottomTabColor,
                     borderRadius: BorderRadius.circular(90),
                   ),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisSize: MainAxisSize.min,
                     children: [
-                      _tabIcons(0, SvgAssets.search),
-                      _tabIcons(1, SvgAssets.message),
-                      _tabIcons(2, SvgAssets.home),
-                      _tabIcons(3, SvgAssets.heart),
-                      _tabIcons(4, SvgAssets.user),
+                      for (var i = 0; i < _screens.length; i++) ...{
+                        _tabIcons(i, _screens[i].icon),
+                        if (i != _screens.length - 1) ...{
+                          const SizedBox(width: 5),
+                        }
+                      }
                     ],
                   ),
                 ),
@@ -124,11 +124,9 @@ class _DashboardHomeState extends State<DashboardHome>
 
   Widget _tabIcons(int index, String asset) {
     return GestureDetector(
-      onTap: () {
-        setState(() {
-          _currentIndex = index;
-        });
-      },
+      onTap: () => setState(() {
+        _currentIndex = index;
+      }),
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 300),
         curve: Curves.easeInCirc,
